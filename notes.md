@@ -1,5 +1,3 @@
-## https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
-  
 ## Convert entrypoint.sh CRLF (Windows) to LF (Unix) 
 docker-compose up -d --build
 
@@ -91,6 +89,7 @@ Next Step: add swagger according to https://mherman.org/presentations/microservi
 
 ## References:
 https://mherman.org/blog/dockerizing-a-react-app/  
+https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/  
 https://mherman.org/presentations/microservices-flask-docker/#1  
 https://github.com/testdrivenio/flask-microservices-users  
 https://github.com/testdrivenio/flask-microservices-main  
