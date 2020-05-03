@@ -2,7 +2,7 @@
 
 
 import os
-import datetime
+from datetime import datetime, timezone
 
 import jwt
 from flask import current_app
@@ -43,6 +43,15 @@ class User(db.Model):
         return jwt.encode(
             payload, current_app.config.get("SECRET_KEY"), algorithm="HS256"
         )
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            "active": self.active,
+            "created_date": self.created_date.isoformat()
+        }        
 
     @staticmethod
     def decode_token(token):

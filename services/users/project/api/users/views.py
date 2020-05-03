@@ -1,7 +1,8 @@
 # services/users/project/api/users/views.py
 
 
-from flask import request
+# from flask import request
+from flask import Blueprint, jsonify, request
 from flask_restx import Resource, fields, Namespace
 
 from project.api.users.crud import (
@@ -16,6 +17,10 @@ from project.api.users.crud import (
 
 users_namespace = Namespace("users")
 
+
+users_blueprint = Blueprint('users', __name__)
+
+
 user = users_namespace.model(
     "User",
     {
@@ -25,6 +30,18 @@ user = users_namespace.model(
         "created_date": fields.DateTime,
     },
 )
+
+
+@users_blueprint.route('/api/users', methods=['GET'])
+def get_users():
+    """Get all users"""
+    data = []
+    users = get_all_users()
+    for row in users:
+        data.append(row.to_json())
+    response = jsonify(data)
+    return response
+
 
 user_post = users_namespace.inherit(
     "User post", user, {"password": fields.String(required=True)}

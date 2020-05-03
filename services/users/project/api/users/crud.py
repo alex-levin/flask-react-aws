@@ -6,7 +6,8 @@ from project.api.users.models import User
 
 
 def get_all_users():
-    return User.query.all()
+    # return User.query.all()
+    return User.query.order_by(User.created_date.desc()).all()
 
 
 def get_user_by_id(user_id):
