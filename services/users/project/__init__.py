@@ -33,9 +33,6 @@ def create_app(script_info=None):
     if os.getenv("FLASK_ENV") == "development":
         admin.init_app(app)
 
-    # register api
-    from project.api import api
-    api.init_app(app)
 
     # register blueprints
     from project.api.users.views import users_blueprint
