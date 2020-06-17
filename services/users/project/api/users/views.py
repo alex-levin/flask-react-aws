@@ -40,19 +40,22 @@ def get_users():
 
 @users_blueprint.route('/api/users/', methods=['POST'])
 def post_user():
-        post_data = request.get_json()
-        username = post_data.get("username")
-        email = post_data.get("email")
-        password = post_data.get("password")
-        response_object = {}
+    print(request)
+    post_data = request.get_json()
+    print(post_data)
+    username = post_data['username']
+    email = post_data['email']
+    password = post_data['password']
+    response_object = {}
 
-        user = get_user_by_email(email)
-        if user:
-            response_object["message"] = "Sorry. That email already exists."
-            return response_object, 400
-        add_user(username, email, password)
-        response_object["message"] = f"{email} was added!"
-        return response_object, 201
+    # user = get_user_by_email(email)
+    # print(user)
+    # if user:
+    #     response_object["message"] = "Sorry. That email already exists."
+    #     return response_object, 400
+    add_user(username, email, password)
+    response_object["message"] = f"{email} was added!"
+    return response_object, 201
 
 
 # @users_blueprint.route('/api/users/<email>', methods=['GET'])    

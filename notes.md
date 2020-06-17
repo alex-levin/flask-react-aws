@@ -55,14 +55,14 @@ users_dev=# select * from users;
 ```
 docker-compose up
 
-http://192.168.99.100:5001/ping 
+http://localhost:5001/api/ping - not ready yet
 ``` 
 {
     "status": "success",
     "message": "pong!!"
 }
 ```
-http://192.168.99.100:5001/users  
+http://localhost:5001/api/users  
 ```
 [
     {
@@ -82,7 +82,7 @@ http://192.168.99.100:5001/users
 
 docker-compose.yml:
 ```
-REACT_APP_USERS_SERVICE_URL=http://192.168.99.100:5001
+REACT_APP_USERS_SERVICE_URL=http://localhost:5001/api
 ```
 
 Next Step: add swagger according to https://mherman.org/presentations/microservices-flask-docker/#1
@@ -99,6 +99,8 @@ https://github.com/testdrivenio/flask-microservices-main/tree/master/e2e
 https://github.com/testdrivenio/flask-microservices-swagger  
 https://github.com/wsargent/docker-cheat-sheet  
 https://hub.packtpub.com/how-to-build-12-factor-design-microservices-on-docker-part-1/  
+
+Postman with http://localhost:5001/api/users POST works!
 
 
 
