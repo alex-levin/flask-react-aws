@@ -15,9 +15,9 @@ def get_user_by_id(user_id):
 
 
 def get_user_by_email(email):
-    # return User.query.filter_by(email=email).first()
+    return User.query.filter_by(email=email).first()
     # https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/
-    return User.query.filter_by(email=email).first_or_404()
+    # return User.query.filter_by(email=email).first_or_404()
 
 
 def add_user(username, email, password):

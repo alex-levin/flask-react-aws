@@ -55,7 +55,7 @@ class App extends Component {
 
   addUser = data => {
     axios
-      .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
+      .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users/`, data)
       .then(res => {
         this.getUsers();
         this.setState({ username: "", email: "" });
@@ -70,7 +70,7 @@ class App extends Component {
   };
 
   handleRegisterFormSubmit = data => {
-    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/register`;
+    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/register/`;
     axios
       .post(url, data)
       .then(res => {
@@ -84,7 +84,7 @@ class App extends Component {
   };
 
   handleLoginFormSubmit = data => {
-    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/login`;
+    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/login/`;
     axios
       .post(url, data)
       .then(res => {
@@ -116,7 +116,7 @@ class App extends Component {
     const token = window.localStorage.getItem("refreshToken");
     if (token) {
       axios
-        .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/auth/refresh`, {
+        .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/auth/refresh/`, {
           refresh_token: token
         })
         .then(res => {
@@ -241,7 +241,7 @@ class App extends Component {
                   <Route exact path="/about" component={About} />
                   <Route
                     exact
-                    path="/register"
+                    path="/register/"
                     render={() => (
                       <RegisterForm
                         // eslint-disable-next-line react/jsx-handler-names

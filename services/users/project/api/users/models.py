@@ -2,7 +2,7 @@
 
 
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 import jwt
 from flask import current_app
@@ -29,6 +29,7 @@ class User(db.Model):
             password, current_app.config.get("BCRYPT_LOG_ROUNDS")
         ).decode()
 
+    # https://realpython.com/token-based-authentication-with-flask/
     def encode_token(self, user_id, token_type):
         if token_type == "access":
             seconds = current_app.config.get("ACCESS_TOKEN_EXPIRATION")
@@ -36,8 +37,9 @@ class User(db.Model):
             seconds = current_app.config.get("REFRESH_TOKEN_EXPIRATION")
 
         payload = {
-            "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=seconds),
-            "iat": datetime.datetime.utcnow(),
+            # https://docs.python.org/3/library/datetime.html
+            "exp": datetime.now(timezone.utc) + timedelta(seconds=seconds),
+            "iat": datetime.now(timezone.utc),
             "sub": user_id,
         }
         return jwt.encode(
@@ -53,6 +55,8 @@ class User(db.Model):
             "created_date": self.created_date.isoformat()
         }        
 
+    # https://realpython.com/token-based-authentication-with-flask/
+    # We have used a static method since it does not relate to the class’s instance.
     @staticmethod
     def decode_token(token):
         payload = jwt.decode(token, current_app.config.get("SECRET_KEY"))

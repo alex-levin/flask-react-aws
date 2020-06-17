@@ -48,33 +48,15 @@ def post_user():
     password = post_data['password']
     response_object = {}
 
-    # user = get_user_by_email(email)
-    # print(user)
-    # if user:
-    #     response_object["message"] = "Sorry. That email already exists."
-    #     return response_object, 400
+    user = get_user_by_email(email)
+    if user:
+        response_object["message"] = "Sorry. That email already exists."
+        return response_object, 400
     add_user(username, email, password)
     response_object["message"] = f"{email} was added!"
     return response_object, 201
 
 
-# @users_blueprint.route('/api/users/<email>', methods=['GET'])    
-# def get_email(email):
-#     response_object = {}
-#     user = get_user_by_email(email)
-#     if not user:
-#         response_object["message"] = f"{email} was not found!"
-#         return response_object, 404
-#     data = user.to_json()
-#     response = jsonify(data)
-#     return response
-
-
-'''
-changed get_user_by_email:
-return User.query.filter_by(email=email).first_or_404()
-404 is handled by the def not_found(e) above 
-'''
 @users_blueprint.route('/api/users/<email>', methods=['GET'])    
 def get_email(email):
     user = get_user_by_email(email)

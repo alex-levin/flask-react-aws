@@ -7,6 +7,7 @@ import os
 class BaseConfig:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # https://realpython.com/token-based-authentication-with-flask/
     SECRET_KEY = "my_precious"
     BCRYPT_LOG_ROUNDS = 13
     ACCESS_TOKEN_EXPIRATION = 900  # 15 minutes
