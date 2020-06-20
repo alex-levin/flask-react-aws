@@ -87,9 +87,13 @@ REACT_APP_USERS_SERVICE_URL=http://localhost:5001/api
 
 Next Step: add swagger according to https://mherman.org/presentations/microservices-flask-docker/#1
 
+## Development: http://localhost:3007
+## Production: http://localhost:8080
+
 ## References:
 https://mherman.org/blog/dockerizing-a-react-app/  
 https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/  
+https://github.com/testdrivenio/flask-on-docker
 https://mherman.org/presentations/microservices-flask-docker/#1  
 https://github.com/testdrivenio/flask-microservices-users  
 https://github.com/testdrivenio/flask-microservices-main  
@@ -101,6 +105,8 @@ https://github.com/wsargent/docker-cheat-sheet
 https://hub.packtpub.com/how-to-build-12-factor-design-microservices-on-docker-part-1/  
 
 Postman with http://localhost:5001/api/users POST works!
+
+
 
 
 

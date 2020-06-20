@@ -3,6 +3,7 @@ version: '3.7'
 services:
 
   users:
+    container_name: users
     build:
       context: ./services/users
       dockerfile: Dockerfile.prod
@@ -33,8 +34,12 @@ services:
       dockerfile: Dockerfile.prod
       args:
         - NODE_ENV=production
-        - REACT_APP_USERS_SERVICE_URL='${REACT_APP_USERS_SERVICE_URL}'
+        # http://users:5000/api doesn't work because React app makes requests to the users service from the browser
+        # (e.g. outside of the container)
+        - REACT_APP_USERS_SERVICE_URL=http://localhost:5001/api
     ports:
-      - 3007:80
+      - 8080:8000
+    # env_file:
+    #   - ./.env.prod
     depends_on:
       - users
