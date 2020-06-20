@@ -32,6 +32,8 @@ services:
     build:
       context: ./services/client
       dockerfile: Dockerfile.prod
+      # No volumes like in docker-compose.yml - no need to reload sources
+      # No environment like in docker-compose.yml - using args instead here and in client's Dockerfile.prod
       args:
         - NODE_ENV=production
         # http://users:5000/api doesn't work because React app makes requests to the users service from the browser
@@ -39,7 +41,5 @@ services:
         - REACT_APP_USERS_SERVICE_URL=http://localhost:5001/api
     ports:
       - 8080:8000
-    # env_file:
-    #   - ./.env.prod
     depends_on:
       - users
