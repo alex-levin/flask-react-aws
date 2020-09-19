@@ -1,3 +1,17 @@
+## Fedora changes
+cd flask-react-aws
+convert CRLF to LF:
+    find . -type f -print0 | xargs -0 dos2unix
+chmod +x services/users/entrypoint.sh
+nano services/users/Dockerfile:
+    replaces CMD ["/usr/src/app/entrypoint.sh"] with
+    ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
+nano docker-compose.yml: added :z in two places to avoid errors caused by SELinux:
+    volumes:
+      - './services/users:/usr/src/app:z'
+      ...
+      - './services/client:/usr/src/app:z'
+
 ## Convert entrypoint.sh CRLF (Windows) to LF (Unix) 
 docker-compose up -d --build
 
