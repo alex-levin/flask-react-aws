@@ -1,19 +1,11 @@
 ## Fedora changes
 cd flask-react-aws
 
-convert CRLF to LF:
+convert CRLF to LF recursively:
 
     find . -type f -print0 | xargs -0 dos2unix
     
-chmod +x services/users/entrypoint.sh
-
-nano services/users/Dockerfile:
-
-    replaces CMD ["/usr/src/app/entrypoint.sh"] with
-    
-    ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
-    
-nano docker-compose.yml: added :z in two places to avoid errors caused by SELinux:
+nano docker-compose.yml: added :z in two places to avoid errors caused by SELinux (not needed if SELinux is ddisabled):
 
     volumes:
     
@@ -30,8 +22,7 @@ docker-compose up -d --build
 docker-compose exec users python manage.py recreate_db
 
 ## Ensure the users table was created:
-docker-compose exec users-db psql --username=postgres --dbname=users_dev
-
+```
 $ docker-compose exec users-db psql --username=postgres --dbname=users_dev
 psql (12.2)
 Type "help" for help.
@@ -63,6 +54,7 @@ users_dev=# \q
 
 Alex@alex-pc MINGW64 ~/Documents/Projects/flask-react-aws (master)
 $
+```
 
 ## Populate the database table:
 ```

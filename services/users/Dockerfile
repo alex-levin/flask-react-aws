@@ -28,6 +28,5 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 # add app
 COPY . /usr/src/app
 
-# run server
-# CMD ["/usr/src/app/entrypoint.sh"]
-ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
+# run Postgres server
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
