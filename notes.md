@@ -121,16 +121,4 @@ https://github.com/testdrivenio/flask-microservices-swagger
 https://github.com/wsargent/docker-cheat-sheet  
 https://hub.packtpub.com/how-to-build-12-factor-design-microservices-on-docker-part-1/  
 
-Postman with http://localhost:5001/api/users POST works!
-
-
-
-
-
-
-
-
-
-
-
-	  
+Postman with http://localhost:5001/api/users POST works!!!  
